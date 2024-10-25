@@ -73,9 +73,7 @@ export const updateComment = async (req: Request, res: Response) => {
             res.status(404).json({ message: `Comment with ${id} not found` });
         }
         await comentRepository.update({ id: id }, { name, email, comment });
-        res.status(200).json({
-            message: `Comment with id:${id} updated succesfully`,
-        });
+        res.status(200).json({ name, id, email, comment });
     } catch (error) {
         console.error(error);
         res.status(500).json({

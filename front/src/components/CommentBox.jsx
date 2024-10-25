@@ -449,14 +449,19 @@ const CommentBox = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ comment }),
+                body: JSON.stringify({ comment, name, email }),
             }
         );
         const data = await response.json();
+        console.log('AAAAAAAAAAAAAAAAAAA', data);
         setComments((prevComments) =>
-            prevComments.map((c) => (c.id === editId ? data.comment : c))
+            prevComments.map((c) => (c.id === editId ? data : c))
         );
         resetForm();
+        console.log(
+            'NUEVOCOMENTSSSSSSSSSSSSSSS',
+            comments.map((c) => (c.id === editId ? data : c))
+        );
     };
 
     const resetForm = () => {
